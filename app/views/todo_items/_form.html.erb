@@ -1,0 +1,48 @@
+<% if @todo_item.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@todo_item.errors.count, "error") %> prohibited this todo_item from being saved:</h2>
+
+  <ul>
+    <% @todo_item.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
+<div id="todo_container">
+  <h1>A new Thing that needs to be Done</h1>
+  <%= form_for(@todo_item) do |f| %>
+    <div class="field">
+      <%= f.label :assigned %><br>
+      <%= f.date_select :assigned %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_field :description %>
+    </div>
+    <div class="field">
+      <%= f.label :owner %><br>
+      <!-- <%= f.text_area :owner %> -->
+      <%= select(:todo_item, :owner, ['Craig', 'Ed', 'Jose', "Sam", "Widny", "Josh", "Joel", "JK", "Alfonzo", "Jesus", "Hassan", "Johnny", "Ezequiel", "Andy", "B" ].sort) %>
+    </div>
+    <div class="field">
+      <%= f.label :completed %><br>
+      <%= f.check_box :completed %>
+    </div>
+    <div class="field">
+      <%= f.label :uses_color %>
+      <%= f.check_box :uses_color %><br>
+      <%= f.label :color %><br>
+      <%= f.color_field :color %>
+    </div>
+    <div class="field">
+      <%= f.label :due %><br>
+      <%= f.date_select :due %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

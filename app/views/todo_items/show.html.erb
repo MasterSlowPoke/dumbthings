@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @todo_item.description %>
+</p>
+
+<p>
+  <strong>Due:</strong>
+  <%= @todo_item.due %>
+</p>
+
+<p>
+  <strong>Assigned:</strong>
+  <%= @todo_item.assigned %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @todo_item.owner %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @todo_item.completed %>
+</p>
+
+<p>
+  <strong>Uses color:</strong>
+  <%= @todo_item.uses_color %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @todo_item.color %>
+</p>
+
+<%= link_to 'Edit', edit_todo_item_path(@todo_item) %> |
+<%= link_to 'Back', todo_items_path %>

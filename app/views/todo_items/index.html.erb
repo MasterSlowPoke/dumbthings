@@ -1,0 +1,45 @@
+<nav>
+  Order By:<br><a href="/">Color</a> | <a href="/todo_items/sort/due">Due Date</a> | <a href="/todo_items/sort/assigned">Assigned Date</a> | <a href="/todo_items/sort/owner">Owner</a>
+</nav>
+
+<div id="todo_container">
+  <table id="todo_list">
+    <thead>
+      <tr>
+        <th class="due">Due</th>
+        <th class="owner">Owner</th>
+        <th class="description">Description</th>
+        <th class="actions last_cell">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="filler"><td></td><td></td><td></td><td class="last_cell"></td></tr>
+      <% @todo_items.each do |todo_item| %>
+        <tr style="<%= "background-color:#{convert_hex_to_rgba(todo_item.color)}" if todo_item.uses_color %> <%= " color: white;" if todo_item.uses_color && is_color_dark?(todo_item.color) %>">
+
+          <td class="first_cell<%= " bold" if todo_item.completed %>">
+            <%= todo_item.completed ? "COMPLETED" : get_friendly_date_string(todo_item.due) %>
+          </td>
+
+          <td><%= todo_item.owner %></td>
+
+          <td <%= "class=completed" if todo_item.completed =%>>
+            <%= todo_item.description %><br>
+            <span class="assigned">Assigned <%= get_friendly_date_string(todo_item.assigned) %></span>
+          </td>
+
+          <td class="last_cell">
+            <span class="command"><%= link_to 'Show', todo_item %></span>
+            <span class="command"><%= link_to 'Edit', edit_todo_item_path(todo_item) %></span>
+            <span class="command"><%= link_to 'Delete', todo_item, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          </td>
+          
+        </tr>
+        <tr class="filler"><td></td><td></td><td></td><td class="last_cell"></td></tr>
+      <% end %>
+        <tr class="filler_bottom"><td></td><td></td><td><span class="command"><%= link_to 'Create a New Item', new_todo_item_path %></span></td><td class="last_cell"></td></tr>
+    </tbody>
+  </table>
+</div>
+<br>
