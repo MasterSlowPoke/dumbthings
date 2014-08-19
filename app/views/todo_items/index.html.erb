@@ -1,5 +1,5 @@
 <nav>
-  Order By:<br><a href="/">Color</a> | <a href="/todo_items/sort/due">Due Date</a> | <a href="/todo_items/sort/assigned">Assigned Date</a> | <a href="/todo_items/sort/owner">Owner</a> | <a href="/todo_items/sort/completed">Completion</a>
+  Order By:<br><a href="/todo_items/">Color</a> | <a href="/todo_items/sort/due">Due Date</a> | <a href="/todo_items/sort/assigned">Assigned Date</a> | <a href="/todo_items/sort/owner">Owner</a> | <a href="/todo_items/sort/completed">Completion</a>
 </nav>
 
 <div id="todo_container">
@@ -19,7 +19,9 @@
         <tr style="<%= "background-color:#{convert_hex_to_rgba(todo_item.color)}" if todo_item.uses_color %> <%= "color: white;" if todo_item.uses_color && is_color_dark?(todo_item.color) %>">
 
           <td class="first_cell<%= " bold" if todo_item.completed %>">
-            <%= todo_item.completed ? "COMPLETED" : get_friendly_date_string(todo_item.due) %>
+            <%= "COMPLETED<br><span class=\"small\">".html_safe if todo_item.completed %> 
+            <%= get_friendly_date_string(todo_item.due) %>
+            <%= "</span>".html_safe if todo_item.completed %>
           </td>
 
           <td><%= todo_item.owner %></td>

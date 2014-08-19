@@ -8,7 +8,7 @@ module TodoItemsHelper
 	  g = hex[3,2].hex
 	  b = hex[5,2].hex
 
-	  return (r + g + b)/3.0 < 69.0 ? true : false
+	  return (r + g + b)/3.0 < 90.0 ? true : false
 	end
 
 	def get_friendly_date_string(date)
@@ -19,7 +19,7 @@ module TodoItemsHelper
 	  # if it is not due within 45 days, I don't care what day of the week it is
 	  day_of_week = "" if (date.strftime('%s').to_i - now.strftime('%s').to_i).abs > 60*60*24*45
 	  # if it is the current year, I don't need to display it
-	  # year = "" if date.year == now.year
+	  year = "" if date.year == now.year
 
 	  return day_of_week + date.strftime('%B') + " " + ordinalize(date.day) + year;
 	end
