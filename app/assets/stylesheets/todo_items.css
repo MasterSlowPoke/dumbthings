@@ -11,7 +11,7 @@ body > h1, nav {
 }
 
 h1 {
-	font-size: 24pt;
+	font-size: 26pt;
 	margin-top: 40px;
 }
 
@@ -27,6 +27,13 @@ nav a, nav a:visited {
 nav a:hover {
 	color: purple;
 	background: initial;
+}
+
+div#notice {
+	font-size: 16pt;
+	text-align: center;
+	color: black;
+	margin: 20px;
 }
 
 #todo_container {
