@@ -98,7 +98,7 @@ nav a:hover {
 }
 
 #todo_list .assigned {
-	text-decoration: none;
+	text-decoration: none !important;
 }
 
 #todo_list .last_cell {
@@ -107,26 +107,26 @@ nav a:hover {
 	border-right: none;
 }
 
-#todo_list span.command {
+#todo_list div.command {
+	margin: 5px;
+}
+
+#todo_list div.command a {
   background-color: #DCDCDC;
   border: 1px solid rgba(0,0,0,0.75);
   border-radius: 10px;
   padding: 2px 10px;
-}
-
-#todo_list span.command a {
 	color: black;
 }
 
-#todo_list span.command a:visited {
+#todo_list div.command a:visited {
 	color: black;
 }
 
-#todo_list span.command a:hover {
+#todo_list div.command a:hover {
 	color: white;
 	background-color: rgba(0,0,0,0.75);
 }
-
 
 #todo_list tr.filler_bottom {
 	height: 15px;
@@ -134,4 +134,36 @@ nav a:hover {
 
 #todo_list tr.filler_bottom {
 	height: 75px;
+}
+
+form.new_todo_item, form.edit_todo_item {
+	text-align: center;
+}
+
+div.field {
+	width: 50%;
+	border-bottom: 2px solid black;
+	margin: auto;
+	padding: 25px;
+}
+
+div.field label {
+	font-weight: bold
+}
+
+div.actions {
+	margin: auto;
+	padding: 15px;
+}
+
+textarea#todo_item_description {
+	width: 400px;
+	height: 100px;
+}
+
+input[type="color"] {
+	width: 200px;
+	height: 50px;
+	padding: 5px 15px;
+
 }

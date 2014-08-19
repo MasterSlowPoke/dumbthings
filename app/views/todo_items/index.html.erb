@@ -1,5 +1,5 @@
 <nav>
-  Order By:<br><a href="/">Color</a> | <a href="/todo_items/sort/due">Due Date</a> | <a href="/todo_items/sort/assigned">Assigned Date</a> | <a href="/todo_items/sort/owner">Owner</a>
+  Order By:<br><a href="/">Color</a> | <a href="/todo_items/sort/due">Due Date</a> | <a href="/todo_items/sort/assigned">Assigned Date</a> | <a href="/todo_items/sort/owner">Owner</a> | <a href="/todo_items/sort/completed">Completion</a>
 </nav>
 
 <div id="todo_container">
@@ -24,21 +24,31 @@
 
           <td><%= todo_item.owner %></td>
 
-          <td <%= "class=completed" if todo_item.completed =%>>
-            <%= todo_item.description %><br>
-            <span class="assigned">Assigned <%= get_friendly_date_string(todo_item.assigned) %></span>
+          <td>
+            <%= "<span class='completed'>".html_safe if todo_item.completed =%>
+              <%= todo_item.description %><br>
+            <%= "</span>".html_safe if todo_item.completed =%>
+
+            Assigned <%= get_friendly_date_string(todo_item.assigned) %></span>
           </td>
 
           <td class="last_cell">
-            <span class="command"><%= link_to 'Show', todo_item %></span>
-            <span class="command"><%= link_to 'Edit', edit_todo_item_path(todo_item) %></span>
-            <span class="command"><%= link_to 'Delete', todo_item, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+            <div class="command">
+              <%= link_to 'Show', todo_item %>
+              <% complete_action = todo_item.completed ? "Uncomplete" : "Complete" %>
+              <%= link_to(complete_action, complete_url(todo_item)) %>
+            </div>
+            <div class="command">
+              <%= link_to 'Edit', edit_todo_item_path(todo_item) %>
+              <%= link_to 'Delete', todo_item, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+
           </td>
-          
+
         </tr>
         <tr class="filler"><td></td><td></td><td></td><td class="last_cell"></td></tr>
       <% end %>
-        <tr class="filler_bottom"><td></td><td></td><td><span class="command"><%= link_to 'Create a New Item', new_todo_item_path %></span></td><td class="last_cell"></td></tr>
+        <tr class="filler_bottom"><td></td><td></td><td><div class="command"><%= link_to 'Create a New Item', new_todo_item_path %></div></td><td class="last_cell"></td></tr>
     </tbody>
   </table>
 </div>

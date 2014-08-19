@@ -10,36 +10,40 @@
 </div>
 <% end %>
 
-
-<div id="todo_container">
-  <h1>A new Thing that needs to be Done</h1>
+<div id="todo_container" style="background-color: rgba(128,128,128,0.25);">
+  <%=
+  if @editing
+    "<h1>Editing a Thing that needs to be Done</h1>".html_safe
+  else
+    "<h1>A new Thing that needs to be Done</h1>".html_safe
+  end
+  %>
   <%= form_for(@todo_item) do |f| %>
     <div class="field">
-      <%= f.label :assigned %><br>
+      <%= f.label :assigned, "Date Assigned: " %>
       <%= f.date_select :assigned %>
     </div>
     <div class="field">
-      <%= f.label :description %><br>
-      <%= f.text_field :description %>
-    </div>
-    <div class="field">
-      <%= f.label :owner %><br>
-      <!-- <%= f.text_area :owner %> -->
+      <%= f.label :owner, "Owner: " %>
       <%= select(:todo_item, :owner, ['Craig', 'Ed', 'Jose', "Sam", "Widny", "Josh", "Joel", "JK", "Alfonzo", "Jesus", "Hassan", "Johnny", "Ezequiel", "Andy", "B" ].sort) %>
     </div>
     <div class="field">
-      <%= f.label :completed %><br>
-      <%= f.check_box :completed %>
+      <%= f.label :description, "Description: " %><br>
+      <%= f.text_area :description %>
     </div>
     <div class="field">
-      <%= f.label :uses_color %>
+      <%= f.label :uses_color, "Enable Coloring: " %>
       <%= f.check_box :uses_color %><br>
       <%= f.label :color %><br>
       <%= f.color_field :color %>
     </div>
     <div class="field">
-      <%= f.label :due %><br>
+      <%= f.label :due, "Due Date:" %>
       <%= f.date_select :due %>
+    </div>
+    <div class="field">
+      <%= f.label :completed, "Completed: " %>
+      <%= f.check_box :completed %>
     </div>
     <div class="actions">
       <%= f.submit %>

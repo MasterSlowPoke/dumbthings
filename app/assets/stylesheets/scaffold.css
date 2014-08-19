@@ -29,6 +29,7 @@ div.field, div.actions {
   background-color: #CC0000;
   display: table;
   color: gainsboro;
+  margin: auto;
 }
 
 #error_explanation {

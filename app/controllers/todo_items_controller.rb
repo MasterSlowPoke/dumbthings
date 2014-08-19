@@ -11,7 +11,7 @@ class TodoItemsController < ApplicationController
         @todo_items = TodoItem.order(params[:sort_by])
       end
     else 
-      @todo_items = TodoItem.order(uses_color: :desc , color: :desc, due: :desc, completed: :desc)
+      @todo_items = TodoItem.order(uses_color: :desc , color: :desc,  completed: :asc, due: :desc,)
     end
   end
 
@@ -27,6 +27,18 @@ class TodoItemsController < ApplicationController
 
   # GET /todo_items/1/edit
   def edit
+  end
+
+  # GET /todo_items/1/complete
+  def complete
+    todo_item = TodoItem.find(params[:complete_id])
+    todo_item.completed = !todo_item.completed
+    todo_item.save
+
+    # logger.debug "***** " + todo_item.inspect
+    # logger.debug "**** todo_item_params = " + todo_item_params.inspect;
+
+    redirect_to "/todo_items/"
   end
 
   # POST /todo_items
@@ -48,6 +60,9 @@ class TodoItemsController < ApplicationController
   # PATCH/PUT /todo_items/1
   # PATCH/PUT /todo_items/1.json
   def update
+    # logger.debug @todo_item.inspect
+    logger.debug todo_item_params.inspect;
+
     respond_to do |format|
       if @todo_item.update(todo_item_params)
         format.html { redirect_to @todo_item, notice: 'Todo item was successfully updated.' }
