@@ -16,7 +16,7 @@
     <tbody>
       <tr class="filler"><td></td><td></td><td></td><td class="last_cell"></td></tr>
       <% @todo_items.each do |todo_item| %>
-        <tr style="<%= "background-color:#{convert_hex_to_rgba(todo_item.color)}" if todo_item.uses_color %> <%= " color: white;" if todo_item.uses_color && is_color_dark?(todo_item.color) %>">
+        <tr style="<%= "background-color:#{convert_hex_to_rgba(todo_item.color)}" if todo_item.uses_color %> <%= "color: white;" if todo_item.uses_color && is_color_dark?(todo_item.color) %>">
 
           <td class="first_cell<%= " bold" if todo_item.completed %>">
             <%= todo_item.completed ? "COMPLETED" : get_friendly_date_string(todo_item.due) %>

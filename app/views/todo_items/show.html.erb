@@ -1,39 +1,48 @@
-<p id="notice"><%= notice %></p>
+<nav><%= link_to 'Edit Item', edit_todo_item_path(@todo_item) %> | <%= link_to 'Back to List', todo_items_path %></nav>
 
-<p>
-  <strong>Description:</strong>
-  <%= @todo_item.description %>
-</p>
+<div id="todo_container" class="show" style="background-color: rgba(128,128,128,0.25);">
+  <div id="notice"><%= notice %></div>
 
-<p>
-  <strong>Due:</strong>
-  <%= @todo_item.due %>
-</p>
+  <h1 class="show_header <%= "no_border" unless @todo_item.uses_color %>" style="<%= "background-color:#{convert_hex_to_rgba(@todo_item.color)}" if @todo_item.uses_color %> <%= "color: white;" if @todo_item.uses_color && is_color_dark?(@todo_item.color) %>">
+    Viewing a 
+    <%= 
+    if @todo_item.completed
+      "Completed"
+    else
+      "Incomplete"
+    end
+    %>
+    Thing
+  </h1>
 
-<p>
-  <strong>Assigned:</strong>
-  <%= @todo_item.assigned %>
-</p>
+  <h2>Description:</h2>
+  <p>
+    <%= @todo_item.description %>
+  </p>
 
-<p>
-  <strong>Owner:</strong>
-  <%= @todo_item.owner %>
-</p>
+  <h2>Assigned:</h2>
+  <p>
+    <%= @todo_item.assigned %>
+  </p>
+  
+  <h2>Due:</h2>
+  <p>
+    <%= @todo_item.due %>
+  </p>
+  
+  <h2>Owner:</h2>
+  <p>
+    <%= @todo_item.owner %>
+  </p>
 
-<p>
-  <strong>Completed:</strong>
-  <%= @todo_item.completed %>
-</p>
-
-<p>
-  <strong>Uses color:</strong>
-  <%= @todo_item.uses_color %>
-</p>
-
-<p>
-  <strong>Color:</strong>
-  <%= @todo_item.color %>
-</p>
-
-<%= link_to 'Edit', edit_todo_item_path(@todo_item) %> |
-<%= link_to 'Back', todo_items_path %>
+  <h2>Color:</h2>
+  <p>
+    <%= 
+    if @todo_item.uses_color 
+      @todo_item.color
+    else
+      "No Color"
+    end
+    %>
+  </p>
+</div>
