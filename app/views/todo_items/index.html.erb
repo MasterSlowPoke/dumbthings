@@ -19,7 +19,7 @@
         <tr style="<%= "background-color:#{convert_hex_to_rgba(todo_item.color)}" if todo_item.uses_color %> <%= "color: white;" if todo_item.uses_color && is_color_dark?(todo_item.color) %>">
 
           <td class="first_cell<%= " bold" if todo_item.completed %>">
-            <%= "COMPLETED<br><span class=\"small\">".html_safe if todo_item.completed %> 
+            <%= "COMPLETED<br><span class=\"small\">Due ".html_safe if todo_item.completed %> 
             <%= get_friendly_date_string(todo_item.due) %>
             <%= "</span>".html_safe if todo_item.completed %>
           </td>
@@ -36,7 +36,7 @@
 
           <td class="last_cell">
             <div class="command">
-              <%= link_to 'Show', todo_item %>
+              <%= link_to 'View', todo_item %>
               <% complete_action = todo_item.completed ? "Uncomplete" : "Complete" %>
               <%= link_to(complete_action, complete_url(todo_item)) %>
             </div>
